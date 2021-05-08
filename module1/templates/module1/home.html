@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="">
+{% csrf_token %}
+    {% if user.is_authenticated %}
+    <h2><input type="submit" value="Show My Meetings"  onclick="window.location.href='{% url 'module1:meeting_list2' user.id %}';return false;"></h2>
+    <h2><input type="submit" value="See Advisors"  onclick="window.location.href='{% url 'module1:list' %}';return false;"></h2>
+    <a href="{% url 'logout' %}?next={% url 'module1:home' %}">Logout</a>
+    {% else %}
+    <h2><input type="submit" value="See Advisors"  onclick="window.location.href='{% url 'module1:list' %}';return false;"></h2>
+    <a href="{% url 'login' %}?next={% url 'module1:home' %}">Login</a>
+
+    {% endif %}
+</form>
+</body>
+</html>

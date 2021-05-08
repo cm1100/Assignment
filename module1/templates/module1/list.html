@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+{% for obj in objects %}
+<li>
+    <h2>{{obj.name}}</h2>
+
+    {% if user.is_authenticated %}
+    <br>
+    <form method="post" action="{% url 'module1:book_meeting' user.id obj.id %}">
+    {% csrf_token %}
+    <input type="submit" value="Book">
+    </form>
+
+
+    {% endif %}
+    <br><br>
+</li>
+
+{% endfor %}
+{% if user.is_authenticated %}
+    {% else %}
+    Login to book <br><br>
+    <a href="{% url 'login' %}?next={% url 'module1:list' %}">Login</a>
+{% endif %}
+
+<a href="{% url 'module1:home' %}">Go back</a>
+</ul>
+</body>
+</html>

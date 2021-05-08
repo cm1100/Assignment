@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% if objects %}
+{% for object in objects %}
+<p>
+{{object.name}}<br>
+    {{object.url}}<br><br><br></p>
+{% endfor %}
+{% else %}
+no meeting found
+{% endif %}
+<input type="submit" value="homepage" onclick="window.location.href='{% url 'module1:home' %}';return false;">
+</body>
+</html>
